@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Escritos de Luis Expósito Sáez</title>
+<meta name="description" content="Textos de Luis Expósito Sáez publicados en LinkedIn y en otros lugares, reunidos en un solo sitio.">
+<meta property="og:title" content="Escritos de Luis Expósito Sáez">
+<meta property="og:description" content="Textos publicados en LinkedIn y en otros lugares, reunidos en un solo sitio.">
+<meta property="og:image" content="img/foto.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#f4f7fb; --surface:#ffffff; --ink:#1c2333; --muted:#5a6476; --line:#e1e6ee;
+  --accent:#0f766e;
+  --sun-1:#ffe680; --sun-2:#ffc847; --sun-3:#ffa98a; --band-ink:#2b1f00;
+  --c-li:#2563eb; --c-art:#0f766e; --c-pre:#d9472f; --c-blog:#b86e00; --c-otro:#7a49c2;
+  --shadow:0 10px 30px rgba(28,35,51,.10);
+  --f-display:"Bricolage Grotesque", "Schibsted Grotesk", system-ui, sans-serif;
+  --f-read:"Newsreader", Georgia, "Times New Roman", serif;
+  --f-ui:"Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#11161e; --surface:#19212c; --ink:#e8ecf2; --muted:#9aa5b6; --line:#2a3443;
+  --accent:#5fd0c0;
+  --sun-1:#4a3a10; --sun-2:#5a3f12; --sun-3:#5b2e22; --band-ink:#ffe7a0;
+  --c-li:#7aa7ff; --c-art:#5fd0c0; --c-pre:#ff8d78; --c-blog:#f3b94a; --c-otro:#b99cf0;
+  --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.5}
+img{max-width:100%}
+.wrap{max-width:900px;margin:0 auto;padding:24px 16px 64px}
+.hero{position:relative;overflow:hidden;border-radius:24px;color:var(--band-ink);
+  background:radial-gradient(circle at 88% 18%, var(--sun-3) 0 18%, transparent 46%),radial-gradient(circle at 10% 110%, var(--sun-2) 0 22%, transparent 55%),linear-gradient(135deg, var(--sun-1), var(--sun-2));
+  padding:40px 36px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center}
+.hero-text{min-width:0}
+.eyebrow{display:inline-flex;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:color-mix(in srgb, var(--band-ink) 10%, transparent);border-radius:999px;padding:5px 12px}
+.hero h1{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,7vw,58px);line-height:1;letter-spacing:-.03em;margin:16px 0 0;text-wrap:balance}
+.hero h1 a{color:inherit;text-decoration:none}
+.hero .sub{font-family:var(--f-read);font-style:italic;font-size:clamp(18px,2.4vw,21px);margin:12px 0 0;opacity:.9;max-width:34ch}
+.portrait{position:relative;width:220px;height:220px;flex:none}
+.sheet{position:absolute;width:118px;height:150px;border-radius:12px;background:var(--surface);box-shadow:var(--shadow)}
+.sheet::before,.sheet::after{content:"";position:absolute;left:16px;right:16px;height:6px;border-radius:3px;background:var(--c)}
+.sheet::before{top:22px;opacity:.9}
+.sheet::after{top:38px;right:40px;opacity:.45}
+.sheet.s1{--c:var(--c-li);left:0;top:34px;transform:rotate(-12deg)}
+.sheet.s2{--c:var(--c-pre);right:0;top:20px;transform:rotate(10deg)}
+.sheet.s3{--c:var(--c-art);left:52px;top:62px;transform:rotate(-2deg)}
+.photo{position:absolute;left:50%;top:50%;width:132px;height:132px;transform:translate(-50%,-38%);border-radius:50%;border:5px solid var(--surface);background:var(--c-otro);box-shadow:var(--shadow);overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.src-li{--c:var(--c-li)} .src-art{--c:var(--c-art)} .src-pre{--c:var(--c-pre)} .src-blog{--c:var(--c-blog)} .src-otro{--c:var(--c-otro)} .src-all{--c:var(--accent)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:30px 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 auto}
+button{font:inherit;cursor:pointer}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500}
+.chip[aria-pressed="true"]{background:color-mix(in srgb, var(--c) 16%, var(--surface));border-color:var(--c);color:var(--c)}
+.search{flex:0 1 240px;min-width:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:9px 16px;font:inherit}
+.count{color:var(--muted);font-size:13px;margin:4px 0 0}
+.list{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.list li{min-width:0}
+.list li.featured,.list li.full{grid-column:1 / -1}
+.post-link{display:flex;flex-direction:column;height:100%;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px;color:inherit;text-decoration:none}
+.featured .post-link{background:color-mix(in srgb, var(--c) 9%, var(--surface));border-color:color-mix(in srgb, var(--c) 35%, var(--line));padding:30px 32px}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.meta .src{color:var(--c);background:color-mix(in srgb, var(--c) 14%, transparent);border-radius:999px;padding:3px 10px;font-weight:600}
+.meta .new{color:var(--ink);font-weight:600}
+.post-link h2{font-family:var(--f-display);font-weight:700;font-size:21px;line-height:1.2;margin:12px 0 8px;letter-spacing:-.015em;text-wrap:balance}
+.featured .post-link h2{font-size:clamp(26px,4vw,34px);letter-spacing:-.025em}
+.excerpt{font-family:var(--f-read);font-size:17px;line-height:1.5;color:var(--muted);margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.featured .excerpt{font-size:19px;-webkit-line-clamp:4;max-width:62ch}
+.more{margin-top:auto;padding-top:14px;font-size:13px;font-weight:600;color:var(--c)}
+.post-link:hover{border-color:var(--c)}
+.post-link:hover h2{color:var(--c)}
+.post-link:focus-visible,.chip:focus-visible,.search:focus-visible,.back:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.thumb{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:12px;margin:0 0 16px;background:var(--line)}
+.featured .thumb{aspect-ratio:16/8}
+article.reader{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:32px clamp(20px,5vw,56px) 40px}
+.back{color:var(--accent);font-weight:600;text-decoration:none}
+article.reader h2{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,5.5vw,46px);line-height:1.05;margin:16px 0 12px;letter-spacing:-.03em;text-wrap:balance}
+.orig{display:inline-block;margin-top:4px;color:var(--accent);font-size:14px;font-weight:600}
+.figs{max-width:66ch;margin-top:24px;display:grid;gap:16px}
+.figs img{display:block;max-width:100%;height:auto;border-radius:14px;margin:0 auto;box-shadow:var(--shadow)}
+.body{font-family:var(--f-read);font-size:19px;line-height:1.7;max-width:66ch;margin-top:28px}
+.body p{margin:0 0 1.15em}
+.body p:first-child::first-letter{font-family:var(--f-display);font-weight:800;float:left;font-size:3.4em;line-height:.85;padding:6px 10px 0 0;color:var(--c)}
+.body a{color:var(--accent);word-break:break-all}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+@media (max-width:700px){
+  .hero{grid-template-columns:1fr;padding:30px 22px 36px}
+  .portrait{margin:0 auto;order:-1;width:200px;height:200px}
+  .list{grid-template-columns:1fr}
+  .search{flex-basis:100%}
+  .featured .post-link{padding:24px 22px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .post-link{transition:transform .18s, border-color .18s, box-shadow .18s}
+  .post-link:hover{transform:translateY(-3px);box-shadow:0 12px 28px color-mix(in srgb, var(--c) 20%, transparent)}
+  .sheet{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  .hero:hover .sheet.s1{transform:rotate(-16deg) translateX(-6px)}
+  .hero:hover .sheet.s2{transform:rotate(14deg) translateX(6px)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-text">
+      <span class="eyebrow">Escritos</span>
+      <h1><a href="#">Luis Expósito Sáez</a></h1>
+      <p class="sub">Textos publicados en LinkedIn y en otros lugares, reunidos en un solo sitio.</p>
+    </div>
+    <div class="portrait">
+      <div class="sheet s1"></div><div class="sheet s2"></div><div class="sheet s3"></div>
+      <div class="photo"><img src="img/foto.jpg" alt="Luis Expósito Sáez"></div>
+    </div>
+  </header>
+  <main>
+    <section id="indexView">
+      <div class="tools">
+        <div class="chips" id="chips" role="group" aria-label="Filtrar por procedencia"></div>
+        <input class="search" id="q" type="search" placeholder="Buscar en los escritos" aria-label="Buscar en los escritos">
+      </div>
+      <p class="count" id="count"></p>
+      <ul class="list" id="list"></ul>
+    </section>
+    <article class="reader" id="readerView" hidden></article>
+  </main>
+  <footer><span>Luis Expósito Sáez</span><span id="footCount"></span></footer>
+</div>
+<script>
+(function(){
+  const SOURCES=["Todos","LinkedIn","Artículo","Prensa","Blog","Otro"];
+  const SLUG={"Todos":"all","LinkedIn":"li","Artículo":"art","Prensa":"pre","Blog":"blog","Otro":"otro"};
+  const MONTHS=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  const $=id=>document.getElementById(id);
+  let posts=[],filter="Todos",query="";
+  const srcClass=s=>"src-"+(SLUG[s]||"otro");
+  function fmtDate(d){const [y,m,day]=(d||"").split("-").map(Number);return (y&&m&&day)?day+" de "+MONTHS[m-1]+" de "+y:(d||"");}
+  const paragraphs=t=>String(t||"").replace(/\r\n/g,"\n").split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
+  function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+  function safeUrl(u){try{const x=new URL(u);return /^https?:$/.test(x.protocol)?x.href:null;}catch(e){return null;}}
+  function metaRow(p,isNew){const m=el("div","meta "+srcClass(p.source));m.appendChild(el("span","src",p.source));m.appendChild(el("span",null,fmtDate(p.date)));if(isNew)m.appendChild(el("span","new","Lo más reciente"));return m;}
+  function linkify(parent,text){
+    const re=/(https?:\/\/[^\s)]+)/g;let last=0,m;
+    while((m=re.exec(text))){parent.appendChild(document.createTextNode(text.slice(last,m.index)));const a=el("a",null,m[1]);a.href=m[1];a.target="_blank";a.rel="noopener";parent.appendChild(a);last=m.index+m[1].length;}
+    parent.appendChild(document.createTextNode(text.slice(last)));
+  }
+  function renderChips(){
+    const box=$("chips");box.textContent="";const present=new Set(posts.map(p=>p.source));
+    SOURCES.filter(s=>s==="Todos"||present.has(s)).forEach(s=>{const b=el("button","chip "+srcClass(s),s);b.type="button";b.setAttribute("aria-pressed",String(filter===s));b.onclick=()=>{filter=s;renderIndex();};box.appendChild(b);});
+  }
+  function renderIndex(){
+    renderChips();
+    const q=query.trim().toLowerCase();
+    const shown=posts.filter(p=>(filter==="Todos"||p.source===filter)&&(!q||(p.title+" "+p.body).toLowerCase().includes(q)));
+    const list=$("list");list.textContent="";const featureFirst=filter==="Todos"&&!q;
+    shown.forEach((p,i)=>{
+      const feat=featureFirst&&i===0;const li=el("li",feat?"featured":null);
+      const a=el("a","post-link "+srcClass(p.source));a.href="#"+encodeURIComponent(p.id);
+      if(p.images&&p.images.length){const im=document.createElement("img");im.className="thumb";im.alt="";im.loading="lazy";im.src=p.images[0];im.onerror=()=>im.remove();a.appendChild(im);}
+      a.appendChild(metaRow(p,feat&&shown.length>1));a.appendChild(el("h2",null,p.title));
+      a.appendChild(el("p","excerpt",paragraphs(p.body)[0]||""));a.appendChild(el("span","more","Leer →"));
+      li.appendChild(a);list.appendChild(li);
+    });
+    const items=[...list.children].filter(li=>!li.classList.contains("featured"));
+    if(items.length%2===1)items[items.length-1].classList.add("full");
+    $("count").textContent=(shown.length===1?"1 escrito":shown.length+" escritos")+(shown.length!==posts.length?" de "+posts.length:"");
+    $("footCount").textContent=posts.length===1?"1 escrito":posts.length+" escritos";
+  }
+  function openPost(p){
+    const a=$("readerView");a.textContent="";a.className="reader "+srcClass(p.source);
+    const back=el("a","back","← Todos los escritos");back.href="#";a.appendChild(back);
+    const meta=metaRow(p,false);meta.style.marginTop="24px";a.appendChild(meta);
+    a.appendChild(el("h2",null,p.title));
+    const u=safeUrl(p.url);if(u){const l=el("a","orig","Ver publicación original");l.href=u;l.target="_blank";l.rel="noopener";a.appendChild(l);}
+    if(p.images&&p.images.length){const figs=el("div","figs");p.images.forEach(src=>{const im=document.createElement("img");im.alt="Imagen de la publicación";im.loading="lazy";im.src=src;im.onerror=()=>im.remove();figs.appendChild(im);});a.appendChild(figs);}
+    const body=el("div","body");
+    paragraphs(p.body).forEach(par=>{const pe=el("p");par.split("\n").forEach((line,i)=>{if(i)pe.appendChild(document.createElement("br"));linkify(pe,line);});body.appendChild(pe);});
+    a.appendChild(body);document.title=p.title+" · Luis Expósito Sáez";
+  }
+  function route(){
+    const id=decodeURIComponent(location.hash.slice(1));const p=id&&posts.find(x=>x.id===id);
+    $("indexView").hidden=!!p;$("readerView").hidden=!p;
+    if(p)openPost(p);else{document.title="Escritos de Luis Expósito Sáez";renderIndex();}
+    window.scrollTo(0,0);
+  }
+  $("q").addEventListener("input",e=>{query=e.target.value;renderIndex();});
+  window.addEventListener("hashchange",route);
+  fetch("posts.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{posts=d.sort((a,b)=>(b.date||"").localeCompare(a.date||""));route();})
+    .catch(()=>{$("count").textContent="No se han podido cargar los escritos.";});
+})();
+</script>
+</body>
+</html>
