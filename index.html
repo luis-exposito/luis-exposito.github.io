@@ -8,34 +8,35 @@
 <meta property="og:title" content="Escritos de Luis Expósito Sáez">
 <meta property="og:description" content="Textos publicados en LinkedIn y en otros lugares, reunidos en un solo sitio.">
 <meta property="og:image" content="img/foto.jpg">
+<link rel="alternate" type="application/rss+xml" title="Escritos de Luis Expósito Sáez" href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
 <style>
 :root{
-  --bg:#f4f7fb; --surface:#ffffff; --ink:#1c2333; --muted:#5a6476; --line:#e1e6ee;
-  --accent:#0f766e;
-  --sun-1:#cfe6ff; --sun-2:#8ec5ff; --sun-3:#6aa8f0; --band-ink:#0b2545;
-  --c-li:#2563eb; --c-art:#0f766e; --c-pre:#d9472f; --c-blog:#b86e00; --c-otro:#7a49c2;
-  --shadow:0 10px 30px rgba(28,35,51,.10);
-  --f-display:"Bricolage Grotesque", "Schibsted Grotesk", system-ui, sans-serif;
-  --f-read:"Newsreader", Georgia, "Times New Roman", serif;
-  --f-ui:"Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
-  color-scheme:light;
+--bg:#f4f7fb; --surface:#ffffff; --ink:#1c2333; --muted:#5a6476; --line:#e1e6ee;
+--accent:#0f766e;
+--sun-1:#cfe6ff; --sun-2:#8ec5ff; --sun-3:#6aa8f0; --band-ink:#0b2545;
+--c-li:#2563eb; --c-art:#0f766e; --c-pre:#d9472f; --c-blog:#b86e00; --c-otro:#7a49c2;
+--shadow:0 10px 30px rgba(28,35,51,.10);
+--f-display:"Bricolage Grotesque", "Schibsted Grotesk", system-ui, sans-serif;
+--f-read:"Newsreader", Georgia, "Times New Roman", serif;
+--f-ui:"Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root{
-  --bg:#11161e; --surface:#19212c; --ink:#e8ecf2; --muted:#9aa5b6; --line:#2a3443;
-  --accent:#5fd0c0;
-  --sun-1:#0f2a4a; --sun-2:#143a63; --sun-3:#1d4f86; --band-ink:#d6e8ff;
-  --c-li:#7aa7ff; --c-art:#5fd0c0; --c-pre:#ff8d78; --c-blog:#f3b94a; --c-otro:#b99cf0;
-  --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark}}
+--bg:#11161e; --surface:#19212c; --ink:#e8ecf2; --muted:#9aa5b6; --line:#2a3443;
+--accent:#5fd0c0;
+--sun-1:#0f2a4a; --sun-2:#143a63; --sun-3:#1d4f86; --band-ink:#d6e8ff;
+--c-li:#7aa7ff; --c-art:#5fd0c0; --c-pre:#ff8d78; --c-blog:#f3b94a; --c-otro:#b99cf0;
+--shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark}}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.5}
 img{max-width:100%}
 .wrap{max-width:900px;margin:0 auto;padding:24px 16px 64px}
 .hero{position:relative;overflow:hidden;border-radius:24px;color:var(--band-ink);
-  background:radial-gradient(circle at 88% 18%, var(--sun-3) 0 18%, transparent 46%),radial-gradient(circle at 10% 110%, var(--sun-2) 0 22%, transparent 55%),linear-gradient(135deg, var(--sun-1), var(--sun-2));
-  padding:40px 36px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center}
+background:radial-gradient(circle at 88% 18%, var(--sun-3) 0 18%, transparent 46%),radial-gradient(circle at 10% 110%, var(--sun-2) 0 22%, transparent 55%),linear-gradient(135deg, var(--sun-1), var(--sun-2));
+padding:40px 36px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center}
 .hero-text{min-width:0}
 .eyebrow{display:inline-flex;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:color-mix(in srgb, var(--band-ink) 10%, transparent);border-radius:999px;padding:5px 12px}
 .hero h1{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,7vw,58px);line-height:1;letter-spacing:-.03em;margin:16px 0 0;text-wrap:balance}
@@ -87,110 +88,193 @@ article.reader h2{font-family:var(--f-display);font-weight:800;font-size:clamp(3
 .body p{margin:0 0 1.15em}
 .body p:first-child::first-letter{font-family:var(--f-display);font-weight:800;float:left;font-size:3.4em;line-height:.85;padding:6px 10px 0 0;color:var(--c)}
 .body a{color:var(--accent);word-break:break-all}
-footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+.subscribe-btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:10px 18px;background:var(--accent);color:var(--surface);font-weight:600;font-size:14px}
+.subscribe-btn:hover{filter:brightness(1.08)}
+.subscribe-btn:focus-visible,.modal button:focus-visible,.modal input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hero .subscribe-btn{margin-top:20px;background:var(--band-ink);color:var(--sun-1)}
+.reader-sub{margin-top:36px;padding:22px 24px;border-radius:16px;background:color-mix(in srgb, var(--c) 9%, var(--surface));border:1px solid color-mix(in srgb, var(--c) 30%, var(--line));display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.reader-sub p{margin:0;font-family:var(--f-read);font-size:18px}
+.modal-back{position:fixed;inset:0;z-index:50;background:rgba(10,18,32,.45);display:flex;align-items:flex-end;justify-content:center;padding:16px}
+.modal{position:relative;width:100%;max-width:440px;background:var(--surface);color:var(--ink);border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.25);padding:30px 28px 24px;overflow:hidden}
+.modal::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:linear-gradient(90deg,var(--c-li),var(--c-art),var(--c-blog),var(--c-pre))}
+.modal h3{font-family:var(--f-display);font-weight:800;font-size:26px;line-height:1.1;letter-spacing:-.02em;margin:6px 0 8px}
+.modal p{margin:0 0 16px;font-family:var(--f-read);font-size:17px;color:var(--muted)}
+.modal form{display:flex;flex-wrap:wrap;gap:8px}
+.modal input[type=email]{flex:1 1 200px;min-width:0;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:11px 16px;font:inherit}
+.modal .subscribe-btn{flex:0 0 auto}
+.modal .fine{margin:14px 0 0;font-family:var(--f-ui);font-size:12px;line-height:1.45}
+.modal .close{position:absolute;right:12px;top:16px;width:36px;height:36px;border:0;border-radius:50%;background:transparent;color:var(--muted);font-size:22px;line-height:1}
+.modal .close:hover{background:var(--bg)}
+.modal .later{border:0;background:none;color:var(--muted);text-decoration:underline;font-size:13px;padding:8px 0 0}
+@media (min-width:701px){.modal-back{align-items:center}}
 @media (max-width:700px){
-  .hero{grid-template-columns:1fr;padding:30px 22px 36px}
-  .portrait{margin:0 auto;order:-1;width:200px;height:200px}
-  .list{grid-template-columns:1fr}
-  .search{flex-basis:100%}
-  .featured .post-link{padding:24px 22px}
+.hero{grid-template-columns:1fr;padding:30px 22px 36px}
+.portrait{margin:0 auto;order:-1;width:200px;height:200px}
+.list{grid-template-columns:1fr}
+.search{flex-basis:100%}
+.featured .post-link{padding:24px 22px}
 }
 @media (prefers-reduced-motion:no-preference){
-  .post-link{transition:transform .18s, border-color .18s, box-shadow .18s}
-  .post-link:hover{transform:translateY(-3px);box-shadow:0 12px 28px color-mix(in srgb, var(--c) 20%, transparent)}
-  .sheet{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-  .hero:hover .sheet.s1{transform:rotate(-16deg) translateX(-6px)}
-  .hero:hover .sheet.s2{transform:rotate(14deg) translateX(6px)}
+.post-link{transition:transform .18s, border-color .18s, box-shadow .18s}
+.post-link:hover{transform:translateY(-3px);box-shadow:0 12px 28px color-mix(in srgb, var(--c) 20%, transparent)}
+.sheet{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.hero:hover .sheet.s1{transform:rotate(-16deg) translateX(-6px)}
+.hero:hover .sheet.s2{transform:rotate(14deg) translateX(6px)}
+.modal{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.97)}to{opacity:1;transform:none}}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="hero">
-    <div class="hero-text">
-      <span class="eyebrow">Escritos</span>
-      <h1><a href="#">Luis Expósito Sáez</a></h1>
-      <p class="sub">Textos publicados en LinkedIn y en otros lugares, reunidos en un solo sitio.</p>
-    </div>
-    <div class="portrait">
-      <div class="sheet s1"></div><div class="sheet s2"></div><div class="sheet s3"></div>
-      <div class="photo"><img src="img/foto.jpg" alt="Luis Expósito Sáez"></div>
-    </div>
-  </header>
-  <main>
-    <section id="indexView">
-      <div class="tools">
-        <div class="chips" id="chips" role="group" aria-label="Filtrar por procedencia"></div>
-        <input class="search" id="q" type="search" placeholder="Buscar en los escritos" aria-label="Buscar en los escritos">
-      </div>
-      <p class="count" id="count"></p>
-      <ul class="list" id="list"></ul>
-    </section>
-    <article class="reader" id="readerView" hidden></article>
-  </main>
-  <footer><span>Luis Expósito Sáez</span><span id="footCount"></span></footer>
+<header class="hero">
+<div class="hero-text">
+<span class="eyebrow">Escritos</span>
+<h1><a href="#">Luis Expósito Sáez</a></h1>
+<p class="sub">Textos publicados en LinkedIn y en otros lugares, reunidos en un solo sitio.</p>
+<button class="subscribe-btn" type="button" data-subscribe hidden>✉ Recibir los nuevos escritos</button>
 </div>
+<div class="portrait">
+<div class="sheet s1"></div><div class="sheet s2"></div><div class="sheet s3"></div>
+<div class="photo"><img src="img/foto.jpg" alt="Luis Expósito Sáez"></div>
+</div>
+</header>
+<main>
+<section id="indexView">
+<div class="tools">
+<div class="chips" id="chips" role="group" aria-label="Filtrar por procedencia"></div>
+<input class="search" id="q" type="search" placeholder="Buscar en los escritos" aria-label="Buscar en los escritos">
+</div>
+<p class="count" id="count"></p>
+<ul class="list" id="list"></ul>
+</section>
+<article class="reader" id="readerView" hidden></article>
+</main>
+<footer><span>Luis Expósito Sáez</span><button class="subscribe-btn" type="button" data-subscribe hidden>✉ Avisarme por correo</button><span id="footCount"></span></footer>
+</div>
+
+<div class="modal-back" id="subModal" hidden>
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="subTitle">
+<button class="close" type="button" id="subClose" aria-label="Cerrar">×</button>
+<h3 id="subTitle">¿Te aviso cuando publique algo nuevo?</h3>
+<p>Deja tu correo y te llegará un aviso cada vez que suba un escrito. Sin más mensajes que esos.</p>
+<form id="subForm" method="post" target="_blank">
+<input type="email" name="email" id="subEmail" required placeholder="tu@correo.com" aria-label="Tu correo electrónico" autocomplete="email">
+<button class="subscribe-btn" type="submit">Suscribirme</button>
+</form>
+<p class="fine">Tu correo solo se usará para avisarte de los nuevos escritos. Puedes darte de baja cuando quieras.</p>
+<button class="later" type="button" id="subLater">Ahora no, gracias</button>
+</div>
+</div>
+
+<script>
+/* ===== Configuración de servicios externos (se rellenan al dar de alta cada cuenta) ===== */
+const CONFIG={
+  goatcounter:"",      /* nombre elegido en GoatCounter, p. ej. "luisexposito" */
+  followitAction:"",   /* dirección del formulario de follow.it */
+  popupDelayMs:12000   /* tiempo antes de mostrar la ventana de suscripción */
+};
+</script>
 <script>
 (function(){
-  const SOURCES=["Todos","LinkedIn","Artículo","Prensa","Blog","Otro"];
-  const SLUG={"Todos":"all","LinkedIn":"li","Artículo":"art","Prensa":"pre","Blog":"blog","Otro":"otro"};
-  const MONTHS=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-  const $=id=>document.getElementById(id);
-  let posts=[],filter="Todos",query="";
-  const srcClass=s=>"src-"+(SLUG[s]||"otro");
-  function fmtDate(d){const [y,m,day]=(d||"").split("-").map(Number);return (y&&m&&day)?day+" de "+MONTHS[m-1]+" de "+y:(d||"");}
-  const paragraphs=t=>String(t||"").replace(/\r\n/g,"\n").split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
-  function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
-  function safeUrl(u){try{const x=new URL(u);return /^https?:$/.test(x.protocol)?x.href:null;}catch(e){return null;}}
-  function metaRow(p,isNew){const m=el("div","meta "+srcClass(p.source));m.appendChild(el("span","src",p.source));m.appendChild(el("span",null,fmtDate(p.date)));if(isNew)m.appendChild(el("span","new","Lo más reciente"));return m;}
-  function linkify(parent,text){
-    const re=/(https?:\/\/[^\s)]+)/g;let last=0,m;
-    while((m=re.exec(text))){parent.appendChild(document.createTextNode(text.slice(last,m.index)));const a=el("a",null,m[1]);a.href=m[1];a.target="_blank";a.rel="noopener";parent.appendChild(a);last=m.index+m[1].length;}
-    parent.appendChild(document.createTextNode(text.slice(last)));
-  }
-  function renderChips(){
-    const box=$("chips");box.textContent="";const present=new Set(posts.map(p=>p.source));
-    SOURCES.filter(s=>s==="Todos"||present.has(s)).forEach(s=>{const b=el("button","chip "+srcClass(s),s);b.type="button";b.setAttribute("aria-pressed",String(filter===s));b.onclick=()=>{filter=s;renderIndex();};box.appendChild(b);});
-  }
-  function renderIndex(){
-    renderChips();
-    const q=query.trim().toLowerCase();
-    const shown=posts.filter(p=>(filter==="Todos"||p.source===filter)&&(!q||(p.title+" "+p.body).toLowerCase().includes(q)));
-    const list=$("list");list.textContent="";const featureFirst=filter==="Todos"&&!q;
-    shown.forEach((p,i)=>{
-      const feat=featureFirst&&i===0;const li=el("li",feat?"featured":null);
-      const a=el("a","post-link "+srcClass(p.source));a.href="#"+encodeURIComponent(p.id);
-      if(p.images&&p.images.length){const im=document.createElement("img");im.className="thumb";im.alt="";im.loading="lazy";im.src=p.images[0];im.onerror=()=>im.remove();a.appendChild(im);}
-      a.appendChild(metaRow(p,feat&&shown.length>1));a.appendChild(el("h2",null,p.title));
-      a.appendChild(el("p","excerpt",paragraphs(p.body)[0]||""));a.appendChild(el("span","more","Leer →"));
-      li.appendChild(a);list.appendChild(li);
-    });
-    const items=[...list.children].filter(li=>!li.classList.contains("featured"));
-    if(items.length%2===1)items[items.length-1].classList.add("full");
-    $("count").textContent=(shown.length===1?"1 escrito":shown.length+" escritos")+(shown.length!==posts.length?" de "+posts.length:"");
-    $("footCount").textContent=posts.length===1?"1 escrito":posts.length+" escritos";
-  }
-  function openPost(p){
-    const a=$("readerView");a.textContent="";a.className="reader "+srcClass(p.source);
-    const back=el("a","back","← Todos los escritos");back.href="#";a.appendChild(back);
-    const meta=metaRow(p,false);meta.style.marginTop="24px";a.appendChild(meta);
-    a.appendChild(el("h2",null,p.title));
-    const u=safeUrl(p.url);if(u){const l=el("a","orig","Ver publicación original");l.href=u;l.target="_blank";l.rel="noopener";a.appendChild(l);}
-    if(p.images&&p.images.length){const figs=el("div","figs");p.images.forEach(src=>{const im=document.createElement("img");im.alt="Imagen de la publicación";im.loading="lazy";im.src=src;im.onerror=()=>im.remove();figs.appendChild(im);});a.appendChild(figs);}
-    const body=el("div","body");
-    paragraphs(p.body).forEach(par=>{const pe=el("p");par.split("\n").forEach((line,i)=>{if(i)pe.appendChild(document.createElement("br"));linkify(pe,line);});body.appendChild(pe);});
-    a.appendChild(body);document.title=p.title+" · Luis Expósito Sáez";
-  }
-  function route(){
-    const id=decodeURIComponent(location.hash.slice(1));const p=id&&posts.find(x=>x.id===id);
-    $("indexView").hidden=!!p;$("readerView").hidden=!p;
-    if(p)openPost(p);else{document.title="Escritos de Luis Expósito Sáez";renderIndex();}
-    window.scrollTo(0,0);
-  }
-  $("q").addEventListener("input",e=>{query=e.target.value;renderIndex();});
-  window.addEventListener("hashchange",route);
-  fetch("posts.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{posts=d.sort((a,b)=>(b.date||"").localeCompare(a.date||""));route();})
-    .catch(()=>{$("count").textContent="No se han podido cargar los escritos.";});
+const SOURCES=["Todos","LinkedIn","Artículo","Prensa","Blog","Otro"];
+const SLUG={"Todos":"all","LinkedIn":"li","Artículo":"art","Prensa":"pre","Blog":"blog","Otro":"otro"};
+const MONTHS=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const $=id=>document.getElementById(id);
+let posts=[],filter="Todos",query="";
+const srcClass=s=>"src-"+(SLUG[s]||"otro");
+function fmtDate(d){const [y,m,day]=(d||"").split("-").map(Number);return (y&&m&&day)?day+" de "+MONTHS[m-1]+" de "+y:(d||"");}
+const paragraphs=t=>String(t||"").replace(/\r\n/g,"\n").split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
+function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+function safeUrl(u){try{const x=new URL(u);return /^https?:$/.test(x.protocol)?x.href:null;}catch(e){return null;}}
+function metaRow(p,isNew){const m=el("div","meta "+srcClass(p.source));m.appendChild(el("span","src",p.source));m.appendChild(el("span",null,fmtDate(p.date)));if(isNew)m.appendChild(el("span","new","Lo más reciente"));return m;}
+function linkify(parent,text){
+const re=/(https?:\/\/[^\s)]+)/g;let last=0,m;
+while((m=re.exec(text))){parent.appendChild(document.createTextNode(text.slice(last,m.index)));const a=el("a",null,m[1]);a.href=m[1];a.target="_blank";a.rel="noopener";parent.appendChild(a);last=m.index+m[1].length;}
+parent.appendChild(document.createTextNode(text.slice(last)));
+}
+
+/* ----- Estadísticas de visitas (GoatCounter, sin cookies) ----- */
+let gcPending=null;
+function track(){
+if(!CONFIG.goatcounter)return;
+const id=decodeURIComponent(location.hash.slice(1));
+const go=()=>window.goatcounter.count({path:id?"/#"+id:"/",title:document.title});
+if(window.goatcounter&&window.goatcounter.count)go();else gcPending=go;
+}
+if(CONFIG.goatcounter){
+window.goatcounter={no_onload:true};
+const s=document.createElement("script");s.async=true;s.src="https://gc.zgo.at/count.js";
+s.dataset.goatcounter="https://"+CONFIG.goatcounter+".goatcounter.com/count";
+s.onload=()=>{if(gcPending){gcPending();gcPending=null;}};
+document.head.appendChild(s);
+}
+
+/* ----- Suscripción por correo ----- */
+const SUB_ON=!!CONFIG.followitAction;
+const store={get(k){try{return localStorage.getItem(k);}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,v);}catch(e){}}};
+function openSub(){$("subModal").hidden=false;setTimeout(()=>$("subEmail").focus(),50);}
+function closeSub(remember){$("subModal").hidden=true;if(remember)store.set("subDismissed",String(Date.now()));}
+if(SUB_ON){
+$("subForm").action=CONFIG.followitAction;
+document.querySelectorAll("[data-subscribe]").forEach(b=>{b.hidden=false;b.onclick=openSub;});
+$("subClose").onclick=()=>closeSub(true);
+$("subLater").onclick=()=>closeSub(true);
+$("subModal").addEventListener("click",e=>{if(e.target===$("subModal"))closeSub(true);});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("subModal").hidden)closeSub(true);});
+$("subForm").addEventListener("submit",()=>{store.set("subDone","1");setTimeout(()=>closeSub(false),300);});
+const dismissed=Number(store.get("subDismissed")||0);
+const recentlyDismissed=dismissed&&(Date.now()-dismissed)<1000*60*60*24*30;
+if(!store.get("subDone")&&!recentlyDismissed)setTimeout(()=>{if($("subModal").hidden)openSub();},CONFIG.popupDelayMs);
+}
+
+function renderChips(){
+const box=$("chips");box.textContent="";const present=new Set(posts.map(p=>p.source));
+SOURCES.filter(s=>s==="Todos"||present.has(s)).forEach(s=>{const b=el("button","chip "+srcClass(s),s);b.type="button";b.setAttribute("aria-pressed",String(filter===s));b.onclick=()=>{filter=s;renderIndex();};box.appendChild(b);});
+}
+function renderIndex(){
+renderChips();
+const q=query.trim().toLowerCase();
+const shown=posts.filter(p=>(filter==="Todos"||p.source===filter)&&(!q||(p.title+" "+p.body).toLowerCase().includes(q)));
+const list=$("list");list.textContent="";const featureFirst=filter==="Todos"&&!q;
+shown.forEach((p,i)=>{
+const feat=featureFirst&&i===0;const li=el("li",feat?"featured":null);
+const a=el("a","post-link "+srcClass(p.source));a.href="#"+encodeURIComponent(p.id);
+if(p.images&&p.images.length){const im=document.createElement("img");im.className="thumb";im.alt="";im.loading="lazy";im.src=p.images[0];im.onerror=()=>im.remove();a.appendChild(im);}
+a.appendChild(metaRow(p,feat&&shown.length>1));a.appendChild(el("h2",null,p.title));
+a.appendChild(el("p","excerpt",paragraphs(p.body)[0]||""));a.appendChild(el("span","more","Leer →"));
+li.appendChild(a);list.appendChild(li);
+});
+const items=[...list.children].filter(li=>!li.classList.contains("featured"));
+if(items.length%2===1)items[items.length-1].classList.add("full");
+$("count").textContent=(shown.length===1?"1 escrito":shown.length+" escritos")+(shown.length!==posts.length?" de "+posts.length:"");
+$("footCount").textContent=posts.length===1?"1 escrito":posts.length+" escritos";
+}
+function openPost(p){
+const a=$("readerView");a.textContent="";a.className="reader "+srcClass(p.source);
+const back=el("a","back","← Todos los escritos");back.href="#";a.appendChild(back);
+const meta=metaRow(p,false);meta.style.marginTop="24px";a.appendChild(meta);
+a.appendChild(el("h2",null,p.title));
+const u=safeUrl(p.url);if(u){const l=el("a","orig","Ver publicación original");l.href=u;l.target="_blank";l.rel="noopener";a.appendChild(l);}
+if(p.images&&p.images.length){const figs=el("div","figs");p.images.forEach(src=>{const im=document.createElement("img");im.alt="Imagen de la publicación";im.loading="lazy";im.src=src;im.onerror=()=>im.remove();figs.appendChild(im);});a.appendChild(figs);}
+const body=el("div","body");
+paragraphs(p.body).forEach(par=>{const pe=el("p");par.split("\n").forEach((line,i)=>{if(i)pe.appendChild(document.createElement("br"));linkify(pe,line);});body.appendChild(pe);});
+a.appendChild(body);
+if(SUB_ON){const box=el("div","reader-sub");box.appendChild(el("p",null,"¿Quieres recibir los próximos escritos en tu correo?"));const b=el("button","subscribe-btn","✉ Avisarme");b.type="button";b.onclick=openSub;box.appendChild(b);a.appendChild(box);}
+document.title=p.title+" · Luis Expósito Sáez";
+}
+function route(){
+const id=decodeURIComponent(location.hash.slice(1));const p=id&&posts.find(x=>x.id===id);
+$("indexView").hidden=!!p;$("readerView").hidden=!p;
+if(p)openPost(p);else{document.title="Escritos de Luis Expósito Sáez";renderIndex();}
+window.scrollTo(0,0);
+track();
+}
+$("q").addEventListener("input",e=>{query=e.target.value;renderIndex();});
+window.addEventListener("hashchange",route);
+fetch("posts.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{posts=d.sort((a,b)=>(b.date||"").localeCompare(a.date||""));route();})
+.catch(()=>{$("count").textContent="No se han podido cargar los escritos.";});
 })();
 </script>
 </body>
