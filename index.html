@@ -93,6 +93,8 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
 .subscribe-btn:hover{filter:brightness(1.08)}
 .subscribe-btn:focus-visible,.modal button:focus-visible,.modal input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .hero .subscribe-btn{margin-top:20px;background:var(--band-ink);color:var(--sun-1)}
+.like-row{margin-top:32px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:var(--f-read);font-size:18px;color:var(--muted)}
+.like-row [data-lyket-type]{font-size:18px}
 .reader-sub{margin-top:36px;padding:22px 24px;border-radius:16px;background:color-mix(in srgb, var(--c) 9%, var(--surface));border:1px solid color-mix(in srgb, var(--c) 30%, var(--line));display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
 .reader-sub p{margin:0;font-family:var(--f-read);font-size:18px}
 .modal-back{position:fixed;inset:0;z-index:50;background:rgba(10,18,32,.45);display:flex;align-items:flex-end;justify-content:center;padding:16px}
@@ -168,11 +170,14 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
 </div>
 </div>
 
+<div id="likeHolder" hidden><div class="like-row" id="likeRow"><span>¿Te ha gustado?</span><div id="likeBtn" data-lyket-type="like" data-lyket-namespace="escritos" data-lyket-id="portada" data-lyket-template="twitter"></div></div></div>
+
 <script>
 /* ===== Configuración de servicios externos (se rellenan al dar de alta cada cuenta) ===== */
 const CONFIG={
   goatcounter:"luisexposito",      /* nombre elegido en GoatCounter, p. ej. "luisexposito" */
   followitAction:"https://api.follow.it/subscription-form/K3ZlWmFZTU5jdUR0RThUbXNqUW53UW9ERm02akVqUURyOGltRWpDejQ0djVlT1ZDV2pHcmEwRk5MT1lJenhUUTJnb1FiTnc4T2xiT1RtYVNRN3VxVnBCN3JzRXBhMkNqN0R0YkN4b0R1Vk5vcU1ORklTb1ZrZkNieXU4NHQ2Wld8NHlyT000VW9QbDZrd3AyVkFIcUxHNFZML2RyaDFrOTY2ZFB0SjltSG05MD0=/8",   /* dirección del formulario de follow.it */
+  lyketKey:"pt_a04e106715d16c90af35dbbb8a02b8",         /* clave pública de Lyket para los "me gusta" */
   popupDelayMs:12000   /* tiempo antes de mostrar la ventana de suscripción */
 };
 </script>
@@ -252,7 +257,7 @@ $("count").textContent=(shown.length===1?"1 escrito":shown.length+" escritos")+(
 $("footCount").textContent=posts.length===1?"1 escrito":posts.length+" escritos";
 }
 function openPost(p){
-const a=$("readerView");a.textContent="";a.className="reader "+srcClass(p.source);
+const a=$("readerView");$("likeHolder").appendChild($("likeRow"));a.textContent="";a.className="reader "+srcClass(p.source);
 const back=el("a","back","← Todos los escritos");back.href="#";a.appendChild(back);
 const meta=metaRow(p,false);meta.style.marginTop="24px";a.appendChild(meta);
 a.appendChild(el("h2",null,p.title));
@@ -261,13 +266,14 @@ if(p.images&&p.images.length){const figs=el("div","figs");p.images.forEach(src=>
 const body=el("div","body");
 paragraphs(p.body).forEach(par=>{const pe=el("p");par.split("\n").forEach((line,i)=>{if(i)pe.appendChild(document.createElement("br"));linkify(pe,line);});body.appendChild(pe);});
 a.appendChild(body);
+if(CONFIG.lyketKey){a.appendChild($("likeRow"));$("likeBtn").setAttribute("data-lyket-id",p.id);}
 if(SUB_ON){const box=el("div","reader-sub");box.appendChild(el("p",null,"¿Quieres recibir los próximos escritos en tu correo?"));const b=el("button","subscribe-btn","✉ Avisarme");b.type="button";b.onclick=openSub;box.appendChild(b);a.appendChild(box);}
 document.title=p.title+" · Luis Expósito Sáez";
 }
 function route(){
 const id=decodeURIComponent(location.hash.slice(1));const p=id&&posts.find(x=>x.id===id);
 $("indexView").hidden=!!p;$("readerView").hidden=!p;
-if(p)openPost(p);else{document.title="Escritos de Luis Expósito Sáez";renderIndex();}
+if(p)openPost(p);else{$("likeHolder").appendChild($("likeRow"));document.title="Escritos de Luis Expósito Sáez";renderIndex();}
 window.scrollTo(0,0);
 track();
 }
@@ -277,5 +283,6 @@ fetch("posts.json",{cache:"no-cache"}).then(r=>r.json()).then(d=>{posts=d.sort((
 .catch(()=>{$("count").textContent="No se han podido cargar los escritos.";});
 })();
 </script>
+<script>if(CONFIG.lyketKey)document.write('<script src="https://unpkg.com/@lyket/widget@2.1.0/dist/lyket.js?apiKey='+encodeURIComponent(CONFIG.lyketKey)+'"><\/script>');</script>
 </body>
 </html>
