@@ -1,0 +1,85 @@
+name: Generar feed RSS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - posts.json
+      - .github/workflows/feed.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generar feed.xml a partir de posts.json
+        run: |
+          python3 - <<'PY'
+          import json, re, datetime, email.utils, urllib.parse
+          from xml.sax.saxutils import escape
+
+          BASE = "https://luis-exposito.github.io/"
+          TITLE = "Escritos de Luis Expósito Sáez"
+          DESC = "Textos publicados en LinkedIn y en otros lugares, reunidos en un solo sitio."
+
+          with open("posts.json", encoding="utf-8") as f:
+              posts = json.load(f)
+          posts.sort(key=lambda p: p.get("date", ""), reverse=True)
+
+          def rfc822(d):
+              try:
+                  dt = datetime.datetime.strptime(d, "%Y-%m-%d")
+              except Exception:
+                  dt = datetime.datetime(2000, 1, 1)
+              return email.utils.format_datetime(dt.replace(hour=9, tzinfo=datetime.timezone.utc))
+
+          items = []
+          for p in posts[:40]:
+              body = str(p.get("body", "")).replace("\r\n", "\n")
+              paras = [s.strip() for s in re.split(r"\n\s*\n", body) if s.strip()]
+              desc = paras[0] if paras else ""
+              link = BASE + "#" + urllib.parse.quote(p["id"])
+              items.append(
+                  "<item>"
+                  f"<title>{escape(p.get('title', ''))}</title>"
+                  f"<link>{escape(link)}</link>"
+                  f"<guid isPermaLink=\"false\">{escape(p['id'])}</guid>"
+                  f"<pubDate>{rfc822(p.get('date', ''))}</pubDate>"
+                  f"<description>{escape(desc)}</description>"
+                  "</item>"
+              )
+
+          last = rfc822(posts[0].get("date", "")) if posts else rfc822("")
+          xml = (
+              '<?xml version="1.0" encoding="UTF-8"?>\n'
+              '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>'
+              f"<title>{escape(TITLE)}</title>"
+              f"<link>{BASE}</link>"
+              f"<description>{escape(DESC)}</description>"
+              "<language>es</language>"
+              f"<lastBuildDate>{last}</lastBuildDate>"
+              f'<atom:link href="{BASE}feed.xml" rel="self" type="application/rss+xml"/>'
+              + "\n".join(items)
+              + "</channel></rss>\n"
+          )
+          with open("feed.xml", "w", encoding="utf-8") as f:
+              f.write(xml)
+          print(f"feed.xml generado con {len(items)} escritos")
+          PY
+
+      - name: Guardar feed.xml en el repositorio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add feed.xml
+          if git diff --cached --quiet; then
+            echo "Sin cambios en el feed"
+          else
+            git commit -m "Actualizar feed RSS"
+            git push
+          fi
