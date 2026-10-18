@@ -53,8 +53,15 @@ padding:40px 36px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px
 .sheet.s3{--c:var(--c-art);left:52px;top:62px;transform:rotate(-2deg)}
 .photo{position:absolute;left:50%;top:50%;width:132px;height:132px;transform:translate(-50%,-38%);border-radius:50%;border:5px solid var(--surface);background:var(--c-otro);box-shadow:var(--shadow);overflow:hidden}
 .photo img{width:100%;height:100%;object-fit:cover;display:block}
-.src-li{--c:var(--c-li)} .src-art{--c:var(--c-art)} .src-pre{--c:var(--c-pre)} .src-blog{--c:var(--c-blog)} .src-otro{--c:var(--c-otro)} .src-all{--c:var(--accent)}
-.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:30px 0 6px}
+.src-li{--c:var(--c-li)} .src-lib{--c:var(--c-pre)} .src-art{--c:var(--c-art)} .src-pre{--c:var(--c-pre)} .src-blog{--c:var(--c-blog)} .src-otro{--c:var(--c-otro)} .src-all{--c:var(--accent)}
+.tabs{display:flex;gap:4px;margin:30px 0 0;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{border:0;background:none;color:var(--muted);font-family:var(--f-display);font-weight:700;font-size:17px;padding:12px 18px;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap;text-decoration:none}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--c);border-bottom-color:var(--c)}
+.tab .n{font-family:var(--f-ui);font-weight:500;font-size:12px;color:var(--muted);margin-left:6px}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.empty{margin:24px 0 0;padding:28px;border:1px dashed var(--line);border-radius:18px;color:var(--muted);font-family:var(--f-read);font-size:18px;text-align:center}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 6px}
 .chips{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 auto}
 button{font:inherit;cursor:pointer}
 .chip{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500}
@@ -135,7 +142,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
 <div class="hero-text">
 <span class="eyebrow">Escritos</span>
 <h1><a href="#">Luis Expósito Sáez</a></h1>
-<p class="sub">Textos publicados en LinkedIn y en otros lugares, reunidos en un solo sitio.</p>
+<p class="sub">Publicaciones en LinkedIn, artículos y libros, reunidos en un solo sitio.</p>
 <button class="subscribe-btn" type="button" data-subscribe hidden>✉ Recibir los nuevos escritos</button>
 </div>
 <div class="portrait">
@@ -145,12 +152,14 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
 </header>
 <main>
 <section id="indexView">
+<nav class="tabs" id="tabs" role="tablist" aria-label="Secciones"></nav>
 <div class="tools">
 <div class="chips" id="chips" role="group" aria-label="Filtrar por procedencia"></div>
 <input class="search" id="q" type="search" placeholder="Buscar en los escritos" aria-label="Buscar en los escritos">
 </div>
 <p class="count" id="count"></p>
 <ul class="list" id="list"></ul>
+<p class="empty" id="empty" hidden></p>
 </section>
 <article class="reader" id="readerView" hidden></article>
 </main>
@@ -184,11 +193,17 @@ const CONFIG={
 </script>
 <script>
 (function(){
-const SOURCES=["Todos","LinkedIn","Artículo","Prensa","Blog","Otro"];
-const SLUG={"Todos":"all","LinkedIn":"li","Artículo":"art","Prensa":"pre","Blog":"blog","Otro":"otro"};
+const SOURCES=["Todos","LinkedIn","Artículo en LinkedIn","Artículo","Prensa","Revista","Blog","Libro","Otro"];
+const SLUG={"Todos":"all","LinkedIn":"li","Artículo en LinkedIn":"li","Artículo":"art","Prensa":"pre","Revista":"art","Blog":"blog","Libro":"lib","Otro":"otro"};
+const TABS=[
+ {id:"linkedin",label:"LinkedIn",cls:"src-li",empty:"Todavía no hay publicaciones de LinkedIn."},
+ {id:"articulos",label:"Artículos",cls:"src-art",empty:"Aquí irán los artículos publicados fuera de LinkedIn."},
+ {id:"libros",label:"Libros",cls:"src-lib",empty:"Aquí irán los libros en los que he participado."}
+];
+const sectionOf=p=>p.section||(p.source==="Libro"?"libros":(/linkedin\.com|lnkd\.in/.test(p.url||"")||p.source==="LinkedIn"?"linkedin":"articulos"));
 const MONTHS=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 const $=id=>document.getElementById(id);
-let posts=[],filter="Todos",query="";
+let posts=[],filter="Todos",query="",tab="linkedin";
 const srcClass=s=>"src-"+(SLUG[s]||"otro");
 function fmtDate(d){const [y,m,day]=(d||"").split("-").map(Number);return (y&&m&&day)?day+" de "+MONTHS[m-1]+" de "+y:(d||"");}
 const paragraphs=t=>String(t||"").replace(/\r\n/g,"\n").split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
@@ -236,13 +251,22 @@ if(!store.get("subDone")&&!recentlyDismissed)setTimeout(()=>{if($("subModal").hi
 }
 
 function renderChips(){
-const box=$("chips");box.textContent="";const present=new Set(posts.map(p=>p.source));
-SOURCES.filter(s=>s==="Todos"||present.has(s)).forEach(s=>{const b=el("button","chip "+srcClass(s),s);b.type="button";b.setAttribute("aria-pressed",String(filter===s));b.onclick=()=>{filter=s;renderIndex();};box.appendChild(b);});
+const box=$("chips");box.textContent="";const present=new Set(posts.filter(p=>sectionOf(p)===tab).map(p=>p.source));
+if(present.size<2){filter="Todos";return;}
+if(filter!=="Todos"&&!present.has(filter))filter="Todos";
+const LBL={"LinkedIn":"Publicaciones","Artículo en LinkedIn":"Artículos"};
+SOURCES.filter(s=>s==="Todos"||present.has(s)).forEach(s=>{const b=el("button","chip "+srcClass(s),LBL[s]||s);b.type="button";b.setAttribute("aria-pressed",String(filter===s));b.onclick=()=>{filter=s;renderIndex();};box.appendChild(b);});
+}
+function renderTabs(){
+const box=$("tabs");box.textContent="";
+TABS.forEach(t=>{const a=el("a","tab "+t.cls,t.label);a.href="#"+t.id;a.setAttribute("role","tab");a.setAttribute("aria-selected",String(tab===t.id));
+a.appendChild(el("span","n",String(posts.filter(p=>sectionOf(p)===t.id).length)));box.appendChild(a);});
 }
 function renderIndex(){
-renderChips();
+renderTabs();renderChips();
 const q=query.trim().toLowerCase();
-const shown=posts.filter(p=>(filter==="Todos"||p.source===filter)&&(!q||(p.title+" "+p.body).toLowerCase().includes(q)));
+const inTab=posts.filter(p=>sectionOf(p)===tab);
+const shown=inTab.filter(p=>(filter==="Todos"||p.source===filter)&&(!q||(p.title+" "+p.body).toLowerCase().includes(q)));
 const list=$("list");list.textContent="";const featureFirst=filter==="Todos"&&!q;
 shown.forEach((p,i)=>{
 const feat=featureFirst&&i===0;const li=el("li",feat?"featured":null);
@@ -254,12 +278,16 @@ li.appendChild(a);list.appendChild(li);
 });
 const items=[...list.children].filter(li=>!li.classList.contains("featured"));
 if(items.length%2===1)items[items.length-1].classList.add("full");
-$("count").textContent=(shown.length===1?"1 escrito":shown.length+" escritos")+(shown.length!==posts.length?" de "+posts.length:"");
+const T=TABS.find(t=>t.id===tab);
+$("empty").hidden=inTab.length>0;$("empty").textContent=T.empty;
+$("q").hidden=inTab.length===0;
+$("count").textContent=inTab.length?((shown.length===1?"1 resultado":shown.length+" resultados")+(shown.length!==inTab.length?" de "+inTab.length:"")):"";
 $("footCount").textContent=posts.length===1?"1 escrito":posts.length+" escritos";
 }
 function openPost(p){
 const a=$("readerView");$("likeHolder").appendChild($("likeRow"));a.textContent="";a.className="reader "+srcClass(p.source);
-const back=el("a","back","← Todos los escritos");back.href="#";a.appendChild(back);
+const T=TABS.find(t=>t.id===sectionOf(p));tab=T.id;
+const back=el("a","back","← "+T.label);back.href="#"+T.id;a.appendChild(back);
 const meta=metaRow(p,false);meta.style.marginTop="24px";a.appendChild(meta);
 a.appendChild(el("h2",null,p.title));
 const u=safeUrl(p.url);if(u){const l=el("a","orig","Ver publicación original");l.href=u;l.target="_blank";l.rel="noopener";a.appendChild(l);}
@@ -272,7 +300,9 @@ if(SUB_ON){const box=el("div","reader-sub");box.appendChild(el("p",null,"¿Quier
 document.title=p.title+" · Luis Expósito Sáez";
 }
 function route(){
-const id=decodeURIComponent(location.hash.slice(1));const p=id&&posts.find(x=>x.id===id);
+const id=decodeURIComponent(location.hash.slice(1));
+if(TABS.some(t=>t.id===id)&&tab!==id){tab=id;filter="Todos";}
+const p=id&&posts.find(x=>x.id===id);
 $("indexView").hidden=!!p;$("readerView").hidden=!p;
 if(p)openPost(p);else{$("likeHolder").appendChild($("likeRow"));document.title="Escritos de Luis Expósito Sáez";renderIndex();}
 window.scrollTo(0,0);
