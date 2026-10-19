@@ -23,8 +23,7 @@
   {"@type":"EducationalOrganization","name":"ICADE"},
   {"@type":"CollegeOrUniversity","name":"Universidad Francisco de Vitoria"}
  ],
- "email":"mailto:luis.exposito@ufv.es",
- "sameAs":["https://orcid.org/0009-0003-7193-7730"]
+ "email":"mailto:luis.exposito@ufv.es"
 }
 </script>
 <meta property="og:description" content="Textos publicados en LinkedIn y en otros lugares, reunidos en un solo sitio.">
@@ -34,10 +33,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
 <style>
 :root{
---bg:#f4f7fb; --surface:#ffffff; --ink:#1c2333; --muted:#5a6476; --line:#e1e6ee;
---accent:#0f766e;
---sun-1:#cfe6ff; --sun-2:#8ec5ff; --sun-3:#6aa8f0; --band-ink:#0b2545;
---c-li:#2563eb; --c-art:#0f766e; --c-pre:#d9472f; --c-blog:#b86e00; --c-otro:#7a49c2;
+--ufv-navy:#001a33; --ufv-blue:#0072f5; --ufv-red:#cf2259;
+--bg:#dfe9f5; --surface:#f3f8fe; --ink:#001a33; --muted:#4c5f70; --line:#c3d3e6;
+--accent:#0072f5;
+--sun-1:#001a33; --sun-2:#03305c; --sun-3:#0b4a8c; --band-ink:#ffffff;
+--c-li:#0072f5; --c-art:#0b4a8c; --c-pre:#cf2259; --c-blog:#b86e00; --c-otro:#001a33;
 --shadow:0 10px 30px rgba(28,35,51,.10);
 --f-display:"Bricolage Grotesque", "Schibsted Grotesk", system-ui, sans-serif;
 --f-read:"Newsreader", Georgia, "Times New Roman", serif;
@@ -45,10 +45,10 @@
 color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root{
---bg:#11161e; --surface:#19212c; --ink:#e8ecf2; --muted:#9aa5b6; --line:#2a3443;
---accent:#5fd0c0;
---sun-1:#0f2a4a; --sun-2:#143a63; --sun-3:#1d4f86; --band-ink:#d6e8ff;
---c-li:#7aa7ff; --c-art:#5fd0c0; --c-pre:#ff8d78; --c-blog:#f3b94a; --c-otro:#b99cf0;
+--bg:#00101f; --surface:#0a2440; --ink:#e8f0fa; --muted:#a3b6cc; --line:#1f3a5a;
+--accent:#5ea8ff;
+--sun-1:#001a33; --sun-2:#03305c; --sun-3:#0b4a8c; --band-ink:#ffffff;
+--c-li:#5ea8ff; --c-art:#8fc0ff; --c-pre:#ff6f9a; --c-blog:#f3b94a; --c-otro:#bcd7ff;
 --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark}}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -56,15 +56,15 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font
 img{max-width:100%}
 .wrap{max-width:900px;margin:0 auto;padding:24px 16px 64px}
 .hero{position:relative;overflow:hidden;border-radius:24px;color:var(--band-ink);
-background:radial-gradient(circle at 88% 18%, var(--sun-3) 0 18%, transparent 46%),radial-gradient(circle at 10% 110%, var(--sun-2) 0 22%, transparent 55%),linear-gradient(135deg, var(--sun-1), var(--sun-2));
+background:radial-gradient(circle at 88% 18%, var(--sun-3) 0 18%, transparent 46%),radial-gradient(circle at 10% 110%, color-mix(in srgb, var(--ufv-blue) 45%, transparent) 0 20%, transparent 55%),linear-gradient(135deg, var(--sun-1), var(--sun-2));
 padding:40px 36px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center}
 .hero-text{min-width:0}
-.eyebrow{display:inline-flex;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:color-mix(in srgb, var(--band-ink) 10%, transparent);border-radius:999px;padding:5px 12px}
+.eyebrow{display:inline-flex;color:#fff;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:color-mix(in srgb, var(--band-ink) 10%, transparent);border-radius:999px;padding:5px 12px}
 .hero h1{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,7vw,58px);line-height:1;letter-spacing:-.03em;margin:16px 0 0;text-wrap:balance}
 .hero h1 a{color:inherit;text-decoration:none}
 .hero .sub{font-family:var(--f-read);font-style:italic;font-size:clamp(18px,2.4vw,21px);margin:12px 0 0;opacity:.9;max-width:34ch}
 .portrait{position:relative;width:220px;height:220px;flex:none}
-.sheet{position:absolute;width:118px;height:150px;border-radius:12px;background:var(--surface);box-shadow:var(--shadow)}
+.sheet{position:absolute;width:118px;height:150px;border-radius:12px;background:#f3f8fe;box-shadow:var(--shadow)}
 .sheet::before,.sheet::after{content:"";position:absolute;left:16px;right:16px;height:6px;border-radius:3px;background:var(--c)}
 .sheet::before{top:22px;opacity:.9}
 .sheet::after{top:38px;right:40px;opacity:.45}
@@ -116,19 +116,30 @@ article.reader h2{font-family:var(--f-display);font-weight:800;font-size:clamp(3
 .body p{margin:0 0 1.15em}
 .body p:first-child::first-letter{font-family:var(--f-display);font-weight:800;float:left;font-size:3.4em;line-height:.85;padding:6px 10px 0 0;color:var(--c)}
 .body a{color:var(--accent);word-break:break-all}
-.about{margin-top:24px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:32px clamp(20px,5vw,56px) 40px}
-.about h2{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,5vw,40px);line-height:1.05;letter-spacing:-.03em;margin:0 0 6px}
-.about .role{font-family:var(--f-ui);font-size:15px;color:var(--muted);margin:0 0 24px}
-.about h3{font-family:var(--f-display);font-weight:700;font-size:20px;letter-spacing:-.01em;color:var(--c-otro);margin:30px 0 10px}
-.about p,.about li{font-family:var(--f-read);font-size:18px;line-height:1.65;max-width:66ch}
-.about p{margin:0 0 1em}
-.about ul{margin:0 0 1em;padding-left:1.2em}
+.about{margin-top:24px;border-radius:22px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.about-head{background:linear-gradient(135deg,var(--ufv-navy),#03305c);color:#fff;padding:36px clamp(20px,5vw,56px) 32px;position:relative}
+.about-head::after{content:"";position:absolute;left:clamp(20px,5vw,56px);bottom:0;width:72px;height:5px;background:var(--ufv-blue);border-radius:3px 3px 0 0}
+.about-head h2{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,5.5vw,46px);line-height:1.05;letter-spacing:-.03em;margin:0;text-wrap:balance}
+.about-head .lead{font-family:var(--f-read);font-style:italic;font-size:clamp(19px,2.6vw,23px);margin:10px 0 0;opacity:.9}
+.about-body{padding:8px clamp(20px,5vw,56px) 40px}
+.about .block{margin-top:22px;padding:24px clamp(18px,3.5vw,32px);border-radius:18px;background:color-mix(in srgb, var(--ufv-blue) 7%, var(--surface));border-left:5px solid var(--ufv-blue)}
+.about .block.alt{background:color-mix(in srgb, var(--ufv-navy) 7%, var(--surface));border-left-color:var(--ufv-navy)}
+.about h3{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,2.8vw,24px);line-height:1.2;letter-spacing:-.015em;color:var(--ink);margin:0 0 12px;text-wrap:balance}
+.about .role{font-family:var(--f-ui);font-size:15px;font-weight:600;color:var(--ufv-blue);margin:0 0 14px;line-height:1.5}
+.about .role span{display:block;font-weight:500;color:var(--muted)}
+.about p{font-family:var(--f-read);font-size:18px;line-height:1.65;max-width:66ch;margin:0 0 1em}
+.about .block p:last-child{margin-bottom:0}
+.about .closing{margin-top:22px;padding:30px clamp(20px,4vw,40px);border-radius:18px;background:var(--ufv-navy);color:#fff}
+.about .closing h3{color:#fff}
+.about .closing p.final{font-size:clamp(20px,2.8vw,24px);font-style:italic;line-height:1.45;margin:6px 0 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.25)}
+.about .contact{margin-top:22px;font-family:var(--f-ui);font-size:15px;color:var(--muted)}
 .about a{color:var(--accent)}
+@media (prefers-color-scheme: dark){.about .role{color:var(--accent)}.about .block{border-left-color:var(--accent)}.about .block.alt{border-left-color:#8fc0ff}}
 footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
-.subscribe-btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:10px 18px;background:var(--accent);color:var(--surface);font-weight:600;font-size:14px}
+.subscribe-btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:10px 18px;background:var(--accent);color:#fff;font-weight:600;font-size:14px}
 .subscribe-btn:hover{filter:brightness(1.08)}
 .subscribe-btn:focus-visible,.modal button:focus-visible,.modal input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.hero .subscribe-btn{margin-top:20px;background:var(--band-ink);color:var(--sun-1)}
+.hero .subscribe-btn{margin-top:20px;background:var(--ufv-blue);color:#fff}
 .like-row{margin-top:32px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:var(--f-read);font-size:18px;color:var(--muted)}
 .like-row [data-lyket-type]{font-size:18px}
 .reader-sub{margin-top:36px;padding:22px 24px;border-radius:16px;background:color-mix(in srgb, var(--c) 9%, var(--surface));border:1px solid color-mix(in srgb, var(--c) 30%, var(--line));display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
@@ -189,41 +200,65 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
 <ul class="list" id="list"></ul>
 <p class="empty" id="empty" hidden></p>
 <section class="about" id="about" hidden aria-labelledby="aboutTitle">
-<h2 id="aboutTitle">Luis Expósito Sáez</h2>
-<p class="role">Director del Grado en Administración y Dirección de Empresas y del Doble Grado en ADE y Psicología<br>Universidad Francisco de Vitoria · Facultad de Derecho, Empresa y Gobierno</p>
-<p>Me considero ante todo educador y acompañante: acompañar es la esencia de lo que soy, o de lo que quiero ser.</p>
-<h3>Trayectoria</h3>
-<p>Empecé mi carrera profesional en la empresa. Pasé por varias compañías, entre ellas Supermercados Match, donde trabajé en control de gestión y abrí mi primera tienda en Ronda, y después fui controller regional en Leroy Merlin. A los cuarenta años emprendí y fundamos Brico House, empresa que vendimos en 2007 a la multinacional irlandesa CRH y en la que seguí trabajando después de la venta. A los cincuenta me incorporé a la Universidad Francisco de Vitoria. Allí he sido director del MBA y del Grado en Gastronomía, y hoy dirijo los grados de ADE y de ADE y Psicología.</p>
-<h3>Docencia</h3>
-<ul>
-<li>Introducción a las Finanzas</li>
-<li>Control de Gestión</li>
-<li>Deontología</li>
-<li>Ética Empresarial</li>
-</ul>
-<p>He impartido docencia de posgrado en distintas universidades. Hoy mi dedicación está centrada en la UFV.</p>
-<h3>Formación</h3>
-<ul>
-<li>Licenciado en Ciencias Económicas y Empresariales, Universidad de Sevilla</li>
-<li>MBA, IESE</li>
-<li>Doctor en Ciencias Económicas y Empresariales, ICADE</li>
-<li>Máster en Humanidades, Universidad Francisco de Vitoria</li>
-<li>Máster en Acompañamiento, Universidad Francisco de Vitoria</li>
-<li>Actualmente curso el Máster en Fundamentos del Cristianismo</li>
-</ul>
-<h3>Lo que me mueve</h3>
-<p>En mi trabajo académico considero fundamentales la transformación cristiana de la sociedad, la exigencia hacia el alumno, la excelencia del profesor, la interdisciplinariedad y la comunidad.</p>
-<h3>Más allá del aula</h3>
-<p>Participo en Buscadores de la Verdad, un espacio de diálogo entre alumnos y profesores de la UFV. Me gusta hacer el Camino de Santiago, peregrinar a Tierra Santa y, próximamente, viajar a Cracovia. Todo ello lo hago con alumnos y profesores, y es algo que nos fortalece como comunidad.</p>
-<h3>En lo personal</h3>
-<p>Estoy casado con una mujer maravillosa, a la que muchos consideran una santa por aguantarme 😉. Tengo una hija que es una persona extraordinaria. Si me pongo a hablar de ella, necesitaría otro blog. Y tengo un padre que me ha enseñado cosas que nadie más que él podía enseñarme.</p>
-<p>Tengo también un equipo con el que rezo. Juntos leemos el Evangelio y vemos qué nos dice a cada uno, y eso me ha permitido crecer en mi espiritualidad.</p>
-<p>Me encanta correr y, desde hace unos años, también hago ejercicios de fuerza. Cosas de la edad.</p>
-<h3>Contacto</h3>
-<ul>
-<li>Correo: <a href="mailto:luis.exposito@ufv.es">luis.exposito@ufv.es</a></li>
-<li>ORCID: <a href="https://orcid.org/0009-0003-7193-7730" target="_blank" rel="noopener">0009-0003-7193-7730</a></li>
-</ul>
+<div class="about-head">
+<h2 id="aboutTitle">De los números a las personas</h2>
+<p class="lead">Un camino que sigue mereciendo la pena.</p>
+</div>
+<div class="about-body">
+<div class="block">
+<h3>Quién soy, o algo parecido</h3>
+<p class="role">Director del Grado en Administración y Dirección de Empresas y del Doble Grado en ADE y Psicología<span>Universidad Francisco de Vitoria · Facultad de Derecho, Empresa y Gobierno</span></p>
+<p>Si alguien me pregunta a qué me dedico, podría responder que dirijo dos grados universitarios. Pero, si me pregunta qué soy, la respuesta es otra. Me considero, ante todo, educador y acompañante. O, al menos, es lo que intento ser cada día.</p>
+<p>Y eso que mi vida profesional comenzó bastante lejos de las aulas.</p>
+</div>
+<div class="block alt">
+<h3>De la empresa a la universidad, pasando por la aventura de emprender</h3>
+<p>Soy economista de formación y empresario de vocación durante buena parte de mi vida.</p>
+<p>Empecé trabajando en distintas compañías. En Supermercados Match aprendí de control de gestión y tuve la oportunidad de abrir mi primera tienda en Ronda. Después fui controller regional en Leroy Merlin, donde seguí descubriendo que detrás de cada cifra hay decisiones y, sobre todo, personas.</p>
+<p>A los cuarenta decidí dar el salto y montar mi propia empresa. Así nació Brico House, una aventura de esas que te enseñan mucho más de lo que esperabas, especialmente cuando las cosas no salen como habías previsto. En 2007 vendimos la compañía a la multinacional irlandesa CRH, donde continué trabajando unos años.</p>
+<p>Y a los cincuenta, cuando algunos empiezan a pensar en bajar el ritmo, a mí se me ocurrió cambiar de vida.</p>
+<p>Llegué a la Universidad Francisco de Vitoria. Primero dirigí el MBA, después el Grado en Gastronomía y actualmente estoy al frente del Grado en ADE y del Doble Grado en ADE y Psicología.</p>
+<p>Nunca imaginé que terminaría dedicándome a la universidad. Hoy me cuesta imaginarme en otro lugar.</p>
+</div>
+<div class="block">
+<h3>Enseñar finanzas está bien. Ayudar a crecer, mucho mejor.</h3>
+<p>He impartido Introducción a las Finanzas, Control de Gestión, Deontología y Ética Empresarial, además de docencia de posgrado en distintas universidades.</p>
+<p>Y aunque disfruto enseñando, lo que realmente me apasiona es acompañar a los alumnos en una etapa decisiva de sus vidas.</p>
+<p>Creo en la exigencia, porque exigir también es una forma de confiar en alguien. Creo en los profesores que no se conforman, en la interdisciplinariedad y en una universidad que sea comunidad de verdad, no solo un conjunto de aulas y despachos.</p>
+<p>Y creo, profundamente, en la capacidad de la educación para contribuir a la transformación cristiana de la sociedad.</p>
+<p>Me gustaría que nuestros alumnos salieran de la UFV siendo magníficos profesionales. Pero, sobre todo, que fueran personas capaces de pensar por sí mismas, comprometerse y hacer el bien.</p>
+<p>Porque para aprender a gestionar una empresa hay muchos libros. Para aprender a vivir, hacen falta también buenos compañeros de camino.</p>
+</div>
+<div class="block alt">
+<h3>Sigo estudiando. A estas alturas, ya parece que no tengo remedio.</h3>
+<p>Estudié Ciencias Económicas y Empresariales en la Universidad de Sevilla, hice el MBA en el IESE y me doctoré en Ciencias Económicas y Empresariales en ICADE.</p>
+<p>Después llegaron el Máster en Humanidades y el Máster en Acompañamiento, ambos en la UFV. Y actualmente curso el Máster en Fundamentos del Cristianismo.</p>
+<p>Podría decir que sigo formándome por responsabilidad profesional, que también. Pero la realidad es más sencilla. Me gusta aprender, hacerme preguntas y descubrir cuánto me queda todavía por saber.</p>
+</div>
+<div class="block">
+<h3>Algunas de las mejores clases suceden fuera del aula</h3>
+<p>Una de las experiencias que más me enriquecen es participar en Buscadores de la Verdad, un espacio en el que alumnos y profesores nos encontramos para conversar, preguntar y buscar respuestas juntos.</p>
+<p>También disfruto especialmente haciendo el Camino de Santiago, peregrinando a Tierra Santa y compartiendo viajes con alumnos y profesores. El próximo destino será Cracovia.</p>
+<p>En estos viajes pasan cosas que difícilmente ocurren en un aula. Surgen conversaciones inesperadas, se comparten inquietudes y se crean vínculos que permanecen mucho después de regresar.</p>
+<p>Y es ahí donde uno descubre que la universidad es mucho más que dar clase.</p>
+</div>
+<div class="block alt">
+<h3>Fuera de la universidad también tengo vida. Aunque a veces no lo parezca.</h3>
+<p>Estoy casado con una mujer maravillosa. Dicen algunos que es una santa por aguantarme. Yo, por prudencia y por experiencia, no pienso discutirlo. 😉</p>
+<p>Tengo una hija extraordinaria. Si empiezo a hablar de ella, necesitaría otra página web y probablemente bastante más espacio del que me han concedido.</p>
+<p>Y tengo un padre que me ha enseñado cosas que no aparecen en ningún libro y que, sin embargo, están entre las más valiosas que he aprendido.</p>
+<p>La fe es otra parte esencial de mi vida. Tengo la suerte de compartir un grupo de oración con el que leo el Evangelio y reflexiono sobre lo que nos dice a cada uno. Es un espacio sencillo, pero muy importante para mí, que me ayuda a seguir creciendo espiritualmente.</p>
+<p>También me gusta correr. Y desde hace unos años he incorporado ejercicios de fuerza. No sé si es afición o instinto de supervivencia, pero a ciertas edades conviene tomarse en serio algunas cosas.</p>
+</div>
+<div class="closing">
+<h3>¿Y después de todo este recorrido?</h3>
+<p>He pasado por grandes empresas, he emprendido, he vendido una compañía, he cambiado de profesión a los cincuenta y he vuelto a ser alumno más veces de las que imaginaba.</p>
+<p>He aprendido de los éxitos, pero seguramente más de los errores. Y, con los años, cada vez valoro menos los cargos y más las personas con las que comparto el camino.</p>
+<p>Si algo tengo claro es que no quiero dejar de aprender, de hacerme preguntas ni de acompañar a quienes tengo cerca.</p>
+<p class="final">Porque, al final, lo importante no es solo lo que uno consigue, sino lo que ayuda a otros a conseguir.</p>
+</div>
+<p class="contact">Correo: <a href="mailto:luis.exposito@ufv.es">luis.exposito@ufv.es</a></p>
+</div>
 </section>
 </section>
 <article class="reader" id="readerView" hidden></article>
