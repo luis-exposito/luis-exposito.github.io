@@ -380,7 +380,7 @@ const feat=featureFirst&&i===0;const li=el("li",feat?"featured":null);
 const a=el("a","post-link "+srcClass(p.source));a.href="#"+encodeURIComponent(p.id);
 if(p.images&&p.images.length){const im=document.createElement("img");im.className="thumb";im.alt="";im.loading="lazy";im.src=p.images[0];im.onerror=()=>im.remove();a.appendChild(im);}
 a.appendChild(metaRow(p,feat&&shown.length>1));a.appendChild(el("h2",null,p.title));
-a.appendChild(el("p","excerpt",paragraphs(p.body)[0]||""));a.appendChild(el("span","more","Leer →"));
+var ex=el("p","excerpt",paragraphs(p.body)[0]||"");ex.setAttribute("data-nosnippet","");a.appendChild(ex);a.appendChild(el("span","more","Leer →"));
 li.appendChild(a);list.appendChild(li);
 });
 const items=[...list.children].filter(li=>!li.classList.contains("featured"));
