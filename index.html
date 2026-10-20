@@ -247,7 +247,7 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:v
 <p>Estoy casado con una mujer maravillosa. Dicen algunos que es una santa por aguantarme. Yo, por prudencia y por experiencia, no pienso discutirlo. 😉</p>
 <p>Tengo una hija extraordinaria. Si empiezo a hablar de ella, necesitaría otra página web y probablemente bastante más espacio del que me han concedido.</p>
 <p>Y tengo un padre que me ha enseñado cosas que no aparecen en ningún libro y que, sin embargo, están entre las más valiosas que he aprendido.</p>
-<p>La fe es otra parte esencial de mi vida. Tengo la suerte de compartir un grupo de oración con el que leo el Evangelio y reflexiono sobre lo que nos dice a cada uno. Es un espacio sencillo, pero muy importante para mí, que me ayuda a seguir creciendo espiritualmente.</p>
+<p>La fe es otra parte importante de mi vida. Tengo la suerte de trabajar en un lugar donde, respetando plenamente la libertad de cada uno, se ofrece la posibilidad de participar en distintos grupos y actividades. Yo intento aprovechar estas oportunidades. Es una forma de ir desarrollando una dimensión fundamental de mi vida que nunca había olvidado, pero a la que quizá no había prestado toda la atención que merecía.</p>
 <p>También me gusta correr. Y desde hace unos años he incorporado ejercicios de fuerza. No sé si es afición o instinto de supervivencia, pero a ciertas edades conviene tomarse en serio algunas cosas.</p>
 </div>
 <div class="closing">
@@ -296,16 +296,16 @@ const CONFIG={
 const SOURCES=["Todos","LinkedIn","Artículo en LinkedIn","Artículo","Prensa","Revista","Blog","Libro","Otro"];
 const SLUG={"Todos":"all","LinkedIn":"li","Artículo en LinkedIn":"li","Artículo":"art","Prensa":"pre","Revista":"art","Blog":"blog","Libro":"lib","Otro":"otro"};
 const TABS=[
+ {id:"sobre-mi",label:"Sobre mí",cls:"src-otro",about:true,empty:""},
  {id:"linkedin",label:"LinkedIn",cls:"src-li",empty:"Todavía no hay publicaciones de LinkedIn."},
  {id:"articulos",label:"Artículos",cls:"src-art",empty:"Aquí irán los artículos publicados fuera de LinkedIn."},
- {id:"libros",label:"Libros",cls:"src-lib",empty:"Aquí irán los libros en los que he participado."},
- {id:"sobre-mi",label:"Sobre mí",cls:"src-otro",about:true,empty:""}
+ {id:"libros",label:"Libros",cls:"src-lib",empty:"Aquí irán los libros en los que he participado."}
 ];
 const HOME_TITLE="Luis Expósito Sáez | Escritos, docencia y trayectoria";
 const sectionOf=p=>p.section||(p.source==="Libro"?"libros":(/linkedin\.com|lnkd\.in/.test(p.url||"")||p.source==="LinkedIn"?"linkedin":"articulos"));
 const MONTHS=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 const $=id=>document.getElementById(id);
-let posts=[],filter="Todos",query="",tab="linkedin";
+let posts=[],filter="Todos",query="",tab="sobre-mi";
 const srcClass=s=>"src-"+(SLUG[s]||"otro");
 function fmtDate(d){const [y,m,day]=(d||"").split("-").map(Number);return (y&&m&&day)?day+" de "+MONTHS[m-1]+" de "+y:(d||"");}
 const paragraphs=t=>String(t||"").replace(/\r\n/g,"\n").split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
